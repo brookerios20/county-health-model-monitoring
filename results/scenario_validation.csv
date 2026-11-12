@@ -1,0 +1,5 @@
+scenario,medIncome_mean,medIncome_min,medIncome_max,povertyPercent_mean,povertyPercent_min,povertyPercent_max,AvgHouseholdSize_mean,AvgHouseholdSize_min,AvgHouseholdSize_max
+clean,46989.38,24035,108477,17.03,3.7,40.6,2.47,0.02,3.97
+A,6989.38,-15965,68477,17.03,3.7,40.6,2.47,0.02,3.97
+A+B,6989.38,-15965,68477,37.03,23.7,60.6,2.47,0.02,3.97
+A+B+C,6989.38,-15965,68477,37.03,23.7,60.6,4.47,2.02,5.97

@@ -180,7 +180,7 @@ The pipeline writes these files to `results/`:
 | `prediction_distribution.png` | distribution of predictions for the reference and each scenario |
 | `rmse_by_scenario.png` | test RMSE per scenario |
 
-`results/screenshots/` holds Evidently UI screenshots taken by hand after a pipeline run, which are listed under "Evidently UI" below.
+`results/screenshots/` holds screenshots of the local Evidently UI, captured after a pipeline run and not written by the pipeline, which are listed under "Evidently UI" below.
 
 ### Accuracy and detection
 
