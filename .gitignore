@@ -1,0 +1,23 @@
+# Evidently local workspace (rebuilt by the pipeline; HTML reports in results/ are committed)
+evidently_workspace/
+
+# MLflow tracking store and artifacts
+mlflow.db
+mlruns/
+mlartifacts/
+
+# Fitted model (rebuilt by the pipeline)
+results/models/
+
+# Logs
+*.log
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+.ipynb_checkpoints/
+
+# Secrets and OS files
+.env
+.DS_Store
