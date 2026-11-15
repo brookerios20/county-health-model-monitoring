@@ -15,8 +15,10 @@ def apply_changes(base_test: pd.DataFrame, changes: list[str]) -> pd.DataFrame:
     """Return a copy of the base test set with each listed change applied.
 
     The changes are applied literally, as in the brief (43,823 becomes 3,823),
-    so change A produces negative incomes for most counties. Values are not
-    clipped, because out-of-range values are what monitoring should catch.
+    so change A gives every county with an income under 40,000 (about 29% of
+    the dataset) a negative income and pushes most others below the training
+    minimum. Values are not clipped, because out-of-range values are what
+    monitoring should catch.
     """
     df = base_test.copy()
     for key in changes:

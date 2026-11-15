@@ -90,7 +90,7 @@ Every scenario starts from a copy of the clean test set, so the clean test set a
 | A+B | `medIncome` decreased by 40,000; `povertyPercent` increased by 20 points |
 | A+B+C | `medIncome` decreased by 40,000; `povertyPercent` increased by 20 points; `AvgHouseholdSize` increased by 2 |
 
-The changes are applied literally, as in the brief's example (43,823 becomes 3,823), so change A gives most counties a negative median income. The values are left unclipped, because impossible values from a broken feed are what monitoring should catch. `results/scenario_validation.md` shows the mean, minimum, and maximum of the three changed columns in each scenario, which confirms each change was applied.
+The changes are applied literally, as in the brief's example (43,823 becomes 3,823), so change A gives every county with a median income under 40,000 a negative value. In the full dataset that is 872 of 3,047 counties (29%), and 2,790 (92%) end up below the training minimum of 22,640. The values are left unclipped, because impossible values from a broken feed are what monitoring should catch. `results/scenario_validation.md` shows the mean, minimum, and maximum of the three changed columns in each scenario, which confirms each change was applied.
 
 Income correlates negatively with the mortality rate and poverty correlates positively, so changes A and B should both raise the predictions. A tree model predicts the same value for every input beyond the edge of its training range, so once a change pushes a column far out of range, its effect on predictions stops growing. This limits how far predictions and accuracy move.
 
@@ -219,7 +219,7 @@ Output monitoring alone would have passed this batch as healthy, although its in
 
 #### Size of the accuracy loss
 
-Accuracy fell by at most 8% even though change A made most incomes negative. A gradient-boosted tree splits on thresholds learned from the training data, so every income below the lowest threshold receives the same treatment as the lowest-income counties in the training data. The corrupted values therefore move predictions only as far as the edge of the training range, and the model keeps returning plausible-looking numbers. This is the reason accuracy metrics on their own are a weak alarm for broken inputs, and the reason the range tests are part of every run.
+Accuracy fell by at most 8% even though change A pushed most incomes below the training minimum and about 29% below zero. A gradient-boosted tree splits on thresholds learned from the training data, so every income below the lowest threshold receives the same treatment as the lowest-income counties in the training data. The corrupted values therefore move predictions only as far as the edge of the training range, and the model keeps returning plausible-looking numbers. This is the reason accuracy metrics on their own are a weak alarm for broken inputs, and the reason the range tests are part of every run.
 
 ### Evidently UI
 
